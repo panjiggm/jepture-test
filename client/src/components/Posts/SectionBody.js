@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
+import { fetchPosts } from "../../store/actions/postAction";
 import AllPosts from "./AllPosts";
 
-const SectionBody = () => {
+const SectionBody = ({ fetchPosts, posts }) => {
+  useEffect(() => {
+    fetchPosts();
+  });
+
   return (
     <div className="section-body">
       <div className="row">
@@ -12,22 +18,32 @@ const SectionBody = () => {
               <ul className="nav nav-pills">
                 <li className="nav-item">
                   <a className="nav-link active" href="/">
-                    All <span className="badge badge-white">5</span>
+                    All
+                    <span className="badge badge-white">{posts.length}</span>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="/">
-                    Draft <span className="badge badge-primary">1</span>
+                    Draft
+                    <span className="badge badge-primary">
+                      {posts.filter(post => post.status === "Draft").length}
+                    </span>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="/">
-                    Pending <span className="badge badge-primary">1</span>
+                    Pending
+                    <span className="badge badge-primary">
+                      {posts.filter(post => post.status === "Pending").length}
+                    </span>
                   </a>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="/">
-                    Trash <span className="badge badge-primary">0</span>
+                    Publish
+                    <span className="badge badge-primary">
+                      {posts.filter(post => post.status === "Publish").length}
+                    </span>
                   </a>
                 </li>
               </ul>
@@ -40,4 +56,10 @@ const SectionBody = () => {
   );
 };
 
-export default SectionBody;
+const mapStateToProps = state => {
+  return {
+    posts: Object.values(state.posts)
+  };
+};
+
+export default connect(mapStateToProps, { fetchPosts })(SectionBody);

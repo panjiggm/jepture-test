@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
+import { fetchPosts } from "../../store/actions/postAction";
 import ava5 from "../../assets/img/avatar/avatar-5.png";
 
-const AllPosts = () => {
+const AllPosts = ({ fetchPosts, posts }) => {
+  useEffect(() => {
+    fetchPosts();
+  });
+
   return (
     <div className="row mt-4">
       <div className="col-12">
@@ -61,158 +67,79 @@ const AllPosts = () => {
                     <th>Title</th>
                     <th>Category</th>
                     <th>Author</th>
-                    <th>Created At</th>
+                    <th>Created/Updated At</th>
                     <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <div className="custom-checkbox custom-control">
-                        <input
-                          type="checkbox"
-                          data-checkboxes="mygroup"
-                          className="custom-control-input"
-                          id="checkbox-2"
-                        />
-                        <label
-                          htmlFor="checkbox-2"
-                          className="custom-control-label">
-                          &nbsp;
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      Laravel 5 Tutorial: Introduction
-                      <div className="table-links">
-                        <a href="/">View</a>
-                        <div className="bullet"></div>
-                        <a href="/">Edit</a>
-                        <div className="bullet"></div>
-                        <a href="/" className="text-danger">
-                          Trash
-                        </a>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="/">Web Developer</a>,<a href="/">Tutorial</a>
-                    </td>
-                    <td>
-                      <a href="/">
-                        <img
-                          alt="pict"
-                          src={ava5}
-                          className="rounded-circle"
-                          width="35"
-                          data-toggle="title"
-                          title=""
-                        />{" "}
-                        <div className="d-inline-block ml-1">Rizal Fakhri</div>
-                      </a>
-                    </td>
-                    <td>2018-01-20</td>
-                    <td>
-                      <div className="badge badge-primary">Published</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="custom-checkbox custom-control">
-                        <input
-                          type="checkbox"
-                          data-checkboxes="mygroup"
-                          className="custom-control-input"
-                          id="checkbox-3"
-                        />
-                        <label
-                          htmlFor="checkbox-3"
-                          className="custom-control-label">
-                          &nbsp;
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      Laravel 5 Tutorial: Installing
-                      <div className="table-links">
-                        <a href="/">View</a>
-                        <div className="bullet"></div>
-                        <a href="/">Edit</a>
-                        <div className="bullet"></div>
-                        <a href="/" className="text-danger">
-                          Trash
-                        </a>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="/">Web Developer</a>,<a href="/">Tutorial</a>
-                    </td>
-                    <td>
-                      <a href="/">
-                        <img
-                          alt="pict"
-                          src={ava5}
-                          className="rounded-circle"
-                          width="35"
-                          data-toggle="title"
-                          title=""
-                        />
-                        <div className="d-inline-block ml-1">Rizal Fakhri</div>
-                      </a>
-                    </td>
-                    <td>2018-01-20</td>
-                    <td>
-                      <div className="badge badge-primary">Published</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div className="custom-checkbox custom-control">
-                        <input
-                          type="checkbox"
-                          data-checkboxes="mygroup"
-                          className="custom-control-input"
-                          id="checkbox-4"
-                        />
-                        <label
-                          htmlFor="checkbox-4"
-                          className="custom-control-label">
-                          &nbsp;
-                        </label>
-                      </div>
-                    </td>
-                    <td>
-                      Laravel 5 Tutorial: MVC
-                      <div className="table-links">
-                        <a href="/">View</a>
-                        <div className="bullet"></div>
-                        <a href="/">Edit</a>
-                        <div className="bullet"></div>
-                        <a href="/" className="text-danger">
-                          Trash
-                        </a>
-                      </div>
-                    </td>
-                    <td>
-                      <a href="/">Web Developer</a>,<a href="/">Tutorial</a>
-                    </td>
-                    <td>
-                      <a href="/">
-                        <img
-                          alt="pict"
-                          src={ava5}
-                          className="rounded-circle"
-                          width="35"
-                          data-toggle="title"
-                          title=""
-                        />{" "}
-                        <div className="d-inline-block ml-1">Rizal Fakhri</div>
-                      </a>
-                    </td>
-                    <td>2018-01-20</td>
-                    <td>
-                      <div className="badge badge-primary">Published</div>
-                    </td>
-                  </tr>
+                  {posts.length > 0 ? (
+                    posts.map(post => {
+                      return (
+                        <tr key={post.id}>
+                          <td>
+                            <div className="custom-checkbox custom-control">
+                              <input
+                                type="checkbox"
+                                data-checkboxes="mygroup"
+                                className="custom-control-input"
+                                id="checkbox-2"
+                              />
+                              <label
+                                htmlFor="checkbox-2"
+                                className="custom-control-label">
+                                &nbsp;
+                              </label>
+                            </div>
+                          </td>
+                          <td>
+                            {post.title}
+                            <div className="table-links">
+                              <a href="/">View</a>
+                              <div className="bullet"></div>
+                              <a href="/">Edit</a>
+                              <div className="bullet"></div>
+                              <a href="/" className="text-danger">
+                                Trash
+                              </a>
+                            </div>
+                          </td>
+                          <td>
+                            <p>{post.category}</p>
+                          </td>
+                          <td>
+                            <a href="/">
+                              <img
+                                alt="pict"
+                                src={ava5}
+                                className="rounded-circle"
+                                width="35"
+                                data-toggle="title"
+                                title=""
+                              />{" "}
+                              <div className="d-inline-block ml-1">
+                                {post.author}
+                              </div>
+                            </a>
+                          </td>
+                          <td>{post.created_at}</td>
+                          <td>
+                            <div
+                              className={
+                                post.status === "Draft"
+                                  ? "badge badge-danger"
+                                  : post.status === "Pending"
+                                  ? "badge badge-warning"
+                                  : "badge badge-primary"
+                              }>
+                              {post.status}
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <div>Tidak ada Postigan</div>
+                  )}
                 </tbody>
               </table>
             </div>
@@ -223,4 +150,10 @@ const AllPosts = () => {
   );
 };
 
-export default AllPosts;
+const mapStateToProps = state => {
+  return {
+    posts: Object.values(state.posts)
+  };
+};
+
+export default connect(mapStateToProps, { fetchPosts })(AllPosts);

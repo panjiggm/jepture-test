@@ -1,5 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createPost } from "../../store/actions/postAction";
 
 const renderInput = ({ input, label }) => {
   return (
@@ -14,63 +16,11 @@ const renderInput = ({ input, label }) => {
   );
 };
 
-const renderTextarea = ({ textarea, label }) => {
-  return (
-    <div className="form-group row mb-4">
-      <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-        {label}
-      </label>
-      <div className="col-sm-12 col-md-7">
-        <textarea
-          name="content"
-          {...textarea}
-          className="form-control"
-          style={{ height: 200 }}
-        />
-      </div>
-    </div>
-  );
-};
-
-const renderCategory = ({ select, label }) => {
-  return (
-    <div className="form-group row mb-4">
-      <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-        {label}
-      </label>
-      <div className="col-sm-12 col-md-7">
-        <select name="category" {...select} className="form-control selectric">
-          <option>Tech</option>
-          <option>News</option>
-          <option>Political</option>
-        </select>
-      </div>
-    </div>
-  );
-};
-
-const renderStatus = ({ select, label }) => {
-  return (
-    <div className="form-group row mb-4">
-      <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-        {label}
-      </label>
-      <div className="col-sm-12 col-md-7">
-        <select name="status" {...select} className="form-control selectric">
-          <option>Publish</option>
-          <option>Draft</option>
-          <option>Pending</option>
-        </select>
-      </div>
-    </div>
-  );
-};
-
-const onSubmit = formVal => {
-  console.log(formVal);
-};
-
-const CreatePost = ({ handleSubmit }) => {
+const CreatePost = ({ handleSubmit, createPost, reset }) => {
+  const onSubmit = formVal => {
+    createPost(formVal);
+    reset();
+  };
   return (
     <div className="section-body">
       <h2 className="section-title">Create New Post</h2>
@@ -88,35 +38,56 @@ const CreatePost = ({ handleSubmit }) => {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <Field name="title" component={renderInput} label="Title" />
 
-                <Field
-                  name="category"
-                  component={renderCategory}
-                  label="Category"
-                  className="form-control selectric">
-                  <option>Tech</option>
-                  <option>News</option>
-                  <option>Political</option>
-                </Field>
+                <div className="form-group row mb-4">
+                  <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                    Category
+                  </label>
+                  <div className="col-sm-12 col-md-7">
+                    <Field
+                      name="category"
+                      component="select"
+                      className="form-control selectric">
+                      <option></option>
+                      <option>Tech</option>
+                      <option>News</option>
+                      <option>Political</option>
+                    </Field>
+                  </div>
+                </div>
 
-                <Field
-                  name="content"
-                  component={renderTextarea}
-                  label="Content"
-                  className="form-control"
-                  style={{ height: 200 }}
-                />
+                <div className="form-group row mb-4">
+                  <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                    Content
+                  </label>
+                  <div className="col-sm-12 col-md-7">
+                    <Field
+                      name="content"
+                      component="textarea"
+                      label="Content"
+                      className="form-control"
+                      style={{ height: 200 }}
+                    />
+                  </div>
+                </div>
 
                 <Field name="author" component={renderInput} label="Author" />
 
-                <Field
-                  name="status"
-                  component={renderStatus}
-                  label="Status"
-                  className="form-control selectric">
-                  <option>Publish</option>
-                  <option>Draft</option>
-                  <option>Pending</option>
-                </Field>
+                <div className="form-group row mb-4">
+                  <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                    Status
+                  </label>
+                  <div className="col-sm-12 col-md-7">
+                    <Field
+                      name="status"
+                      component="select"
+                      className="form-control selectric">
+                      <option></option>
+                      <option>Publish</option>
+                      <option>Draft</option>
+                      <option>Pending</option>
+                    </Field>
+                  </div>
+                </div>
 
                 <div className="form-group row mb-4">
                   <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
@@ -133,6 +104,8 @@ const CreatePost = ({ handleSubmit }) => {
   );
 };
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: "postCreate"
 })(CreatePost);
+
+export default connect(null, { createPost })(formWrapped);

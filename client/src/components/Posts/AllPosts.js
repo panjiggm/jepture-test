@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { fetchPosts } from "../../store/actions/postAction";
 import ava5 from "../../assets/img/avatar/avatar-5.png";
@@ -7,7 +8,7 @@ import ava5 from "../../assets/img/avatar/avatar-5.png";
 const AllPosts = ({ fetchPosts, posts }) => {
   useEffect(() => {
     fetchPosts();
-  });
+  }, []);
 
   return (
     <div className="row mt-4">
@@ -72,74 +73,70 @@ const AllPosts = ({ fetchPosts, posts }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {posts.length > 0 ? (
-                    posts.map(post => {
-                      return (
-                        <tr key={post.id}>
-                          <td>
-                            <div className="custom-checkbox custom-control">
-                              <input
-                                type="checkbox"
-                                data-checkboxes="mygroup"
-                                className="custom-control-input"
-                                id="checkbox-2"
-                              />
-                              <label
-                                htmlFor="checkbox-2"
-                                className="custom-control-label">
-                                &nbsp;
-                              </label>
-                            </div>
-                          </td>
-                          <td>
-                            {post.title}
-                            <div className="table-links">
-                              <a href="/">View</a>
-                              <div className="bullet"></div>
-                              <a href="/">Edit</a>
-                              <div className="bullet"></div>
-                              <a href="/" className="text-danger">
-                                Trash
-                              </a>
-                            </div>
-                          </td>
-                          <td>
-                            <p>{post.category}</p>
-                          </td>
-                          <td>
-                            <a href="/">
-                              <img
-                                alt="pict"
-                                src={ava5}
-                                className="rounded-circle"
-                                width="35"
-                                data-toggle="title"
-                                title=""
-                              />{" "}
-                              <div className="d-inline-block ml-1">
-                                {post.author}
-                              </div>
+                  {posts.map(post => {
+                    return (
+                      <tr key={post.id}>
+                        <td>
+                          <div className="custom-checkbox custom-control">
+                            <input
+                              type="checkbox"
+                              data-checkboxes="mygroup"
+                              className="custom-control-input"
+                              id="checkbox-2"
+                            />
+                            <label
+                              htmlFor="checkbox-2"
+                              className="custom-control-label">
+                              &nbsp;
+                            </label>
+                          </div>
+                        </td>
+                        <td>
+                          {post.title}
+                          <div className="table-links">
+                            <a href="/">View</a>
+                            <div className="bullet"></div>
+                            <Link to={`/edit/${post.id}`}>Edit</Link>
+                            <div className="bullet"></div>
+                            <a href="/" className="text-danger">
+                              Trash
                             </a>
-                          </td>
-                          <td>{post.created_at}</td>
-                          <td>
-                            <div
-                              className={
-                                post.status === "Draft"
-                                  ? "badge badge-danger"
-                                  : post.status === "Pending"
-                                  ? "badge badge-warning"
-                                  : "badge badge-primary"
-                              }>
-                              {post.status}
+                          </div>
+                        </td>
+                        <td>
+                          <p>{post.category}</p>
+                        </td>
+                        <td>
+                          <a href="/">
+                            <img
+                              alt="pict"
+                              src={ava5}
+                              className="rounded-circle"
+                              width="35"
+                              data-toggle="title"
+                              title=""
+                            />{" "}
+                            <div className="d-inline-block ml-1">
+                              {post.author}
                             </div>
-                          </td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <div>Tidak ada Postigan</div>
-                  )}
+                          </a>
+                        </td>
+                        <td>{post.created_at}</td>
+                        <td>
+                          <div
+                            className={
+                              post.status === "Draft"
+                                ? "badge badge-danger"
+                                : post.status === "Pending"
+                                ? "badge badge-warning"
+                                : "badge badge-primary"
+                            }>
+                            {post.status}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

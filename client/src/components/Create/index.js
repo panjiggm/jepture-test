@@ -1,10 +1,11 @@
 import React from "react";
+
 import CreatePost from "./CreatePost";
 import Navbar from "../General/Navbar";
 import Sidebar from "../General/Sidebar";
 import Footer from "../General/Footer";
 
-const Form = () => {
+const Create = () => {
   return (
     <div id="app">
       <div className="main-wrapper container">
@@ -21,4 +22,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Create;

@@ -1,4 +1,6 @@
+import moment from "moment";
 import endpoints from "../endpoints";
+import history from "../../history";
 import {
   CREATE_POST,
   FETCH_POSTS,
@@ -10,10 +12,11 @@ import {
 export const createPost = formValues => async dispatch => {
   const response = await endpoints.post("/posts", {
     ...formValues,
-    created_at: new Date().toISOString().split("T")[0]
+    created_at: moment(new Date()).format("h:mm, DD/MM/YY")
   });
 
   dispatch({ type: CREATE_POST, payload: response.data });
+  history.push("/app");
 };
 
 export const fetchPosts = () => async dispatch => {

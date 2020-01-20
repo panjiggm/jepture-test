@@ -7,7 +7,7 @@ import AllPosts from "./AllPosts";
 const SectionBody = ({ fetchPosts, posts }) => {
   useEffect(() => {
     fetchPosts();
-  });
+  }, []);
 
   return (
     <div className="section-body">

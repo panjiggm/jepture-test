@@ -5,17 +5,20 @@ import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import Posts from "./Posts";
-import Form from "./Form";
+import Create from "./Create";
+import Edit from "./Edit";
+import history from "../history";
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/app" component={Posts} />
-        <Route path="/create" component={Form} />
+        <Route path="/create" component={Create} />
+        <Route path="/edit/:id" component={Edit} />
       </Switch>
     </Router>
   );

@@ -100,7 +100,6 @@ const salesChart = {
         data: [70, 62, 44, 40, 21, 63, 82, 52, 50, 31, 70, 50, 91, 63, 51, 60],
         borderWidth: 2,
         backgroundColor: "transparent",
-        borderWidth: 3,
         borderColor: "rgba(63,82,227,1)",
         pointBorderWidth: 0,
         pointBorderColor: "transparent",

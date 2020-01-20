@@ -10,21 +10,9 @@ const Sidebar = () => {
               href="/"
               data-toggle="dropdown"
               className="nav-link has-dropdown">
-              <i className="fas fa-home"></i>
-              <span>Home</span>
+              <i className="fas fa-fire"></i>
+              <span>Halo</span>
             </a>
-            <ul className="dropdown-menu">
-              <li className="nav-item">
-                <a href="index-0.html" className="nav-link">
-                  General Dashboard
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="index.html" className="nav-link">
-                  Ecommerce Dashboard
-                </a>
-              </li>
-            </ul>
           </li>
         </ul>
       </div>

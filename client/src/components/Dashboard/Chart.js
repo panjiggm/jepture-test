@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Line } from "react-chartjs-2";
 
@@ -23,7 +23,6 @@ const chart = {
       {
         label: "Sales",
         data: [3200, 1800, 4305, 3022, 6310, 5120, 5880, 6154],
-        borderWidth: 2,
         backgroundColor: "rgba(63,82,227,.8)",
         borderWidth: 0,
         borderColor: "transparent",
@@ -35,7 +34,6 @@ const chart = {
       {
         label: "Budget",
         data: [2207, 3403, 2200, 5025, 2302, 4208, 3880, 4880],
-        borderWidth: 2,
         backgroundColor: "rgba(254,86,83,.7)",
         borderWidth: 0,
         borderColor: "transparent",

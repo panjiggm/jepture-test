@@ -1,13 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Form = () => {
   return (
-    <form method="POST" action="#" className="needs-validation" noValidate="">
+    <form className="needs-validation" noValidate="">
       <div className="form-group">
         <label htmlFor="email">Email</label>
         <input
           id="email"
-          type="email"
+          type="text"
           className="form-control"
           name="email"
           tabIndex="1"
@@ -55,12 +56,13 @@ const Form = () => {
       </div>
 
       <div className="form-group">
-        <button
+        <Link
+          to="/dashboard"
           type="submit"
           className="btn btn-primary btn-lg btn-block"
           tabIndex="4">
           Login
-        </button>
+        </Link>
       </div>
     </form>
   );

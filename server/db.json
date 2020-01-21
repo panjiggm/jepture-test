@@ -1,75 +1,14 @@
 {
   "posts": [
     {
-      "title": "React JS",
-      "content": "React Adalah Librray Javascript untuk membuat sebuah UI",
-      "author": "Panji Gumelar",
-      "status": "Draft",
-      "created_at": "2020-01-20",
-      "id": 1
-    },
-    {
-      "title": "Redux",
+      "title": "SASS",
       "category": "News",
-      "content": "Redux adalah state management untuk javascript, termasuk react",
-      "author": "Dadang Galedoh",
-      "status": "Pending",
-      "created_at": "2020-01-20",
-      "id": 2
-    },
-    {
-      "title": "Trafalgar Law",
-      "category": "News",
-      "content": "Dia adalah kapten Bajak Laut Heart",
+      "content": "SASS Adalah CSS Preprocessor",
       "author": "Atep Kenalpot",
       "status": "Publish",
-      "created_at": "2020-01-20",
-      "id": 3
-    },
-    {
-      "title": "SCSS",
-      "category": "Political",
-      "content": "Adalah sebuah CSS Preprocessor, atau, Sebuah CSS dengan super power",
-      "author": "Edi Balon",
-      "status": "Publish",
-      "created_at": "2020-01-20",
-      "id": 4
-    },
-    {
-      "title": "JSON-Server",
-      "category": "News",
-      "content": "Adalah Fake API server",
-      "author": "Iin Carkilah",
-      "status": "Pending",
-      "created_at": "21st January 2020, 1:14",
-      "id": 5
-    },
-    {
-      "title": "One Piece",
-      "category": "Tech",
-      "status": "Pending",
-      "content": "Adalah Serial Anime petualangan sekelompok bajak laut",
-      "author": "Monkey D Luffy",
-      "created_at": "1:35, 21/01/20",
-      "id": 6
-    },
-    {
-      "title": "Captain Kidd",
-      "category": "Political",
-      "content": "Adalah Kapten Bajak Laut Kidd",
-      "author": "jajang",
-      "status": "Draft",
-      "created_at": "1:36, 21/01/20",
-      "id": 7
-    },
-    {
-      "title": "ASUS",
-      "category": "Tech",
-      "content": "An Enemy has been slain",
-      "author": "Bapak Tatang",
-      "status": "Publish",
-      "created_at": "3:07, 21/01/20",
-      "id": 8
+      "created_at": "8:46, 21/01/20",
+      "updated_at": "",
+      "id": 1
     }
   ]
 }

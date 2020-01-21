@@ -1,5 +1,9 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const formSwal = withReactContent(Swal);
 
 const renderInput = ({ input, label }) => {
   return (
@@ -18,6 +22,10 @@ const PostForm = ({ handleSubmit, reset, onSubmitPost }) => {
   const onSubmit = formVal => {
     onSubmitPost(formVal);
     reset();
+
+    formSwal
+      .fire("Berhasil!", "Anda sudah posting!", "success")
+      .then(() => (window.location.href = "/app"));
   };
   return (
     <div className="section-body">
@@ -78,7 +86,7 @@ const PostForm = ({ handleSubmit, reset, onSubmitPost }) => {
         <div className="form-group row mb-4">
           <label className="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
           <div className="col-sm-12 col-md-7">
-            <button className="btn btn-primary">Create Post</button>
+            <button className="btn btn-primary">Submit</button>
           </div>
         </div>
       </form>

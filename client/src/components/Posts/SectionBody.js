@@ -7,7 +7,7 @@ import AllPosts from "./AllPosts";
 const SectionBody = ({ fetchPosts, posts }) => {
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [fetchPosts]);
 
   return (
     <div className="section-body">
@@ -25,7 +25,7 @@ const SectionBody = ({ fetchPosts, posts }) => {
                 <li className="nav-item">
                   <a className="nav-link" href="/">
                     Draft
-                    <span className="badge badge-primary">
+                    <span className="badge badge-danger">
                       {posts.filter(post => post.status === "Draft").length}
                     </span>
                   </a>
@@ -33,7 +33,7 @@ const SectionBody = ({ fetchPosts, posts }) => {
                 <li className="nav-item">
                   <a className="nav-link" href="/">
                     Pending
-                    <span className="badge badge-primary">
+                    <span className="badge badge-warning">
                       {posts.filter(post => post.status === "Pending").length}
                     </span>
                   </a>

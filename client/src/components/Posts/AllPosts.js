@@ -8,7 +8,7 @@ import ava5 from "../../assets/img/avatar/avatar-5.png";
 const AllPosts = ({ fetchPosts, posts }) => {
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [posts, fetchPosts]);
 
   return (
     <div className="row mt-4">
@@ -68,7 +68,8 @@ const AllPosts = ({ fetchPosts, posts }) => {
                     <th>Title</th>
                     <th>Category</th>
                     <th>Author</th>
-                    <th>Created/Updated At</th>
+                    <th>Created</th>
+                    <th>Updated</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -86,9 +87,7 @@ const AllPosts = ({ fetchPosts, posts }) => {
                             />
                             <label
                               htmlFor="checkbox-2"
-                              className="custom-control-label">
-                              &nbsp;
-                            </label>
+                              className="custom-control-label"></label>
                           </div>
                         </td>
                         <td>
@@ -98,16 +97,18 @@ const AllPosts = ({ fetchPosts, posts }) => {
                             <div className="bullet"></div>
                             <Link to={`/edit/${post.id}`}>Edit</Link>
                             <div className="bullet"></div>
-                            <a href="/" className="text-danger">
+                            <Link
+                              to={`/delete/${post.id}`}
+                              className="text-danger">
                               Trash
-                            </a>
+                            </Link>
                           </div>
                         </td>
                         <td>
-                          <p>{post.category}</p>
+                          <p className="text-primary">{post.category}</p>
                         </td>
                         <td>
-                          <a href="/">
+                          <p className="text-primary">
                             <img
                               alt="pict"
                               src={ava5}
@@ -115,13 +116,14 @@ const AllPosts = ({ fetchPosts, posts }) => {
                               width="35"
                               data-toggle="title"
                               title=""
-                            />{" "}
-                            <div className="d-inline-block ml-1">
+                            />
+                            <span className="d-inline-block ml-1">
                               {post.author}
-                            </div>
-                          </a>
+                            </span>
+                          </p>
                         </td>
                         <td>{post.created_at}</td>
+                        <td>{post.updated_at}</td>
                         <td>
                           <div
                             className={

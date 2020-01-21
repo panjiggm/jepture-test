@@ -12,7 +12,8 @@ import {
 export const createPost = formValues => async dispatch => {
   const response = await endpoints.post("/posts", {
     ...formValues,
-    created_at: moment(new Date()).format("h:mm, DD/MM/YY")
+    created_at: moment(new Date()).format("h:mm, DD/MM/YY"),
+    updated_at: ""
   });
 
   dispatch({ type: CREATE_POST, payload: response.data });
@@ -32,16 +33,18 @@ export const fetchPost = id => async dispatch => {
 };
 
 export const editPost = (id, formValues) => async dispatch => {
-  const response = await endpoints.put(`/posts/${id}`, {
+  const response = await endpoints.patch(`/posts/${id}`, {
     ...formValues,
-    updated_at: new Date().toISOString().split("T")[0]
+    updated_at: moment(new Date()).format("h:mm, DD/MM/YY")
   });
 
   dispatch({ type: EDIT_POST, payload: response.data });
+  history.push("/app");
 };
 
 export const deletePost = id => async dispatch => {
   await endpoints.delete(`/posts/${id}`);
 
   dispatch({ type: DELETE_POST, payload: id });
+  history.push("/app");
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 
 import Home from "./Home";
 import Dashboard from "./Dashboard";
@@ -7,6 +7,7 @@ import Login from "./Login";
 import Posts from "./Posts";
 import Create from "./Create";
 import Edit from "./Edit";
+import Delete from "./Delete";
 import history from "../history";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/app" component={Posts} />
         <Route path="/create" component={Create} />
         <Route path="/edit/:id" component={Edit} />
+        <Route path="/delete/:id" component={Delete} />
       </Switch>
     </Router>
   );

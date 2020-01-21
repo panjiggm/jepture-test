@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchPost } from "../../store/actions/postAction";
+import { fetchPost, editPost } from "../../store/actions/postAction";
 
 import EditPost from "./EditPost";
 import Navbar from "../General/Navbar";
@@ -10,9 +10,7 @@ import Footer from "../General/Footer";
 const Edit = props => {
   useEffect(() => {
     props.fetchPost(props.match.params.id);
-  }, []);
-
-  console.log(props.posts && props.posts.title);
+  }, [props]);
 
   return (
     <div id="app">
@@ -21,7 +19,11 @@ const Edit = props => {
         <Sidebar />
         <div className="main-content">
           <section className="section">
-            <EditPost />
+            <EditPost
+              editPost={props.editPost}
+              initialValues={props.posts}
+              id={props.match.params.id}
+            />
           </section>
         </div>
         <Footer />
@@ -36,4 +38,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchPost })(Edit);
+export default connect(mapStateToProps, { fetchPost, editPost })(Edit);

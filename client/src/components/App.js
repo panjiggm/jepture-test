@@ -8,6 +8,7 @@ import Posts from "./Posts";
 import Create from "./Create";
 import Edit from "./Edit";
 import Delete from "./Delete";
+import Detail from "./Detail";
 import history from "../history";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/create" component={Create} />
         <Route path="/edit/:id" component={Edit} />
         <Route path="/delete/:id" component={Delete} />
+        <Route path="/detail/:id" component={Detail} />
       </Switch>
     </Router>
   );

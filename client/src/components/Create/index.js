@@ -13,6 +13,14 @@ const Create = () => {
         <Sidebar />
         <div className="main-content">
           <section className="section">
+            <div className="section-header">
+              <h1>Create</h1>
+              <div className="section-header-button">
+                <a href="/app" className="btn btn-dark">
+                  Kembali
+                </a>
+              </div>
+            </div>
             <CreatePost />
           </section>
         </div>

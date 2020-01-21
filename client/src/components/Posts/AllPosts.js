@@ -93,7 +93,7 @@ const AllPosts = ({ fetchPosts, posts }) => {
                         <td>
                           {post.title}
                           <div className="table-links">
-                            <a href="/">View</a>
+                            <Link to={`/detail/${post.id}`}>View</Link>
                             <div className="bullet"></div>
                             <Link to={`/edit/${post.id}`}>Edit</Link>
                             <div className="bullet"></div>
